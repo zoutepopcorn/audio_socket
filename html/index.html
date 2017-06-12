@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>bb</title>
+</head>
+
+<body>
+    <script src="/socket.io/socket.io.js "></script>
+    <script src="/js/socket.io-stream.js"></script>
+    <script src="jq.js "></script>
+    <h1>Audio Testing 1 2 3</h1>
+    <audio id="audio" controls>
+    <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+  <br>
+
+
+    <script>
+    var socket = io('http://localhost:' + window.location.port);
+    var audio = document.getElementById('audioSource');
+    console.log("hoi");
+    socket.on('start', function (data) {
+        console.log("start");
+        console.log(data);
+        // socket.emit('my other event', { my: 'data' });
+        socket.emit('stream', { my: 'data' });
+          console.log("");
+          ss(socket).on('audio-stream', function(stream, data) {
+              parts = [];
+              console.log("DATA -->> ")
+              stream.on('data', (chunk) => {
+                  console.log(chunk);
+                  parts.push(chunk);
+              });
+              stream.on('end', function () {
+                  var audio = document.getElementById('audio');
+                  audio.src = (window.URL || window.webkitURL).createObjectURL(new Blob(parts));
+                  audio.play();
+              });
+          });
+        });
+    </script>
+</body>
+</html>

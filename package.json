@@ -1,0 +1,16 @@
+{
+  "name": "stmp3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mp3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.2",
+    "socket.io-stream": "^0.9.1"
+  }
+}
