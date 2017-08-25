@@ -1,6 +1,6 @@
 # audio_socket
 
-##Open terminal
+## Open terminal
 
 ```
 git clone https://github.com/zoutepopcorn/audio_socket/
@@ -14,8 +14,7 @@ npm install .
 node mp3.js
 ```
 
-
-##Open browser
+## Open browser
 ```
 localhost:8000
 ```
