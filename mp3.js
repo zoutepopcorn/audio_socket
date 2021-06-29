@@ -15,12 +15,32 @@ app.get('/', function (req, res) {
 
 
 io.on('connection', function (socket) {
+
   socket.emit('start', { hello: 'worold' });
+
   socket.on('stream', function (data) {
     console.log(data);
+    console.log('Vai emitir Evento');
+    socket.emit('downTo', { hello: 'downTo' });
     var stream = ss.createStream();
-    var filename = __dirname + '/penningen.mp3' ;
+    var filename = __dirname + '/penningen.mp3';
     ss(socket).emit('audio-stream', stream, { name: filename });
     fs.createReadStream(filename).pipe(stream);
   });
+
+  socket.on('evento', function(data){
+    console.log(data);
+    var textoEnviado = data;
+    socket.emit('downTo', {dadoenviado: data});
+    io.sockets.emit('downTo', {dadoenviado: data});
+  });
+
+  socket.on('audio', function(data){
+    
+    console.log('bateu no audio');
+    socket.broadcast.emit('audio-stream', data);
+
+  });
+
+
 });
