@@ -4,7 +4,7 @@
   "description": "",
   "main": "mp3.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node mp3.js"
   },
   "author": "",
   "license": "ISC",
